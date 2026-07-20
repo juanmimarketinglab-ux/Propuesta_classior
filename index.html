@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centrix Core — Ecosistema IA Generativa & Ecommerce para Classior Legmoda</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --black: #0A0A0A;
+  --offblack: #141414;
+  --carbon: #1C1C1C;
+  --ash: #6B6B6B;
+  --warm-white: #F5F2ED;
+  --cream: #EDE8E0;
+  --gold: #C9A96E;
+  --gold-light: #D4B97E;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--warm-white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+section { padding: 100px 0; }
+section.alt { background: var(--offblack); }
+section.dark { background: var(--carbon); }
+.section-head { max-width: 680px; margin-bottom: 56px; }
+.section-head h2 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(28px, 4vw, 40px); line-height: 1.2; margin-bottom: 18px; }
+.section-head p { font-size: 16px; font-weight: 300; color: var(--ash); line-height: 1.7; }
+
+/* ─── HERO ─── */
+.hero { position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 24px; background: var(--black); }
+.hero-waves { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; filter: blur(5px); pointer-events: none; }
+.hero::after { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 50% 0%, rgba(10,10,10,0) 0%, var(--black) 92%); pointer-events: none; }
+.hero-inner { position: relative; z-index: 1; max-width: 860px; }
+.hero-logo { font-family: 'Inter'; font-weight: 600; font-size: 13px; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 48px; display: inline-block; border: 1px solid rgba(201,169,110,0.3); padding: 10px 24px; }
+.hero h1 { font-family: 'Playfair Display', serif; font-weight: 500; font-size: clamp(34px, 5.5vw, 58px); line-height: 1.12; color: var(--warm-white); margin-bottom: 28px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub { font-size: 17px; font-weight: 300; color: var(--ash); max-width: 580px; margin: 0 auto 40px; line-height: 1.7; }
+.hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(201,169,110,0.15); }
+.stat-item { text-align: center; }
+.stat-number { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 600; color: var(--warm-white); display: block; }
+.stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ash); margin-top: 4px; }
+
+/* ─── CARDS ─── */
+.problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+.problem-card { background: rgba(201,169,110,0.04); border: 1px solid rgba(201,169,110,0.1); padding: 32px; border-radius: 14px; }
+.problem-card h3 { font-family: 'Inter'; font-size: 15px; font-weight: 600; margin-bottom: 10px; color: var(--warm-white); position: relative; z-index: 1; }
+.problem-card p { font-size: 14px; color: var(--ash); line-height: 1.65; position: relative; z-index: 1; }
+/* Text holders reuse .glow-card's mouse-tracked glow, but as a frosted-glass panel.
+   Unlike the photo holders there's no opaque image to shield the interior, so the
+   spotlight fill + inner highlight layers are dropped entirely for this variant —
+   only the border colour and the outer box-shadow halo remain, both of which are
+   physically incapable of painting inside the box (a border strokes its own edge,
+   a non-inset box-shadow only ever renders outside it). */
+.problem-card.glow-card {
+  padding: 32px;
+  border-radius: 14px;
+  background-color: rgba(255,255,255,0.035);
+  background-image: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-color: hsl(var(--hue) 85% 60% / calc(0.22 + 0.55 * var(--near, 0)));
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.problem-card.glow-card::before { content: none; }
+
+/* ─── QUALITY ─── */
+.quality-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+@media (max-width: 768px) { .quality-block { grid-template-columns: 1fr; } }
+.quality-text h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 500; margin-bottom: 16px; }
+.quality-text p { font-size: 15px; color: var(--ash); line-height: 1.7; margin-bottom: 12px; }
+.quality-list { list-style: none; margin-top: 20px; }
+.quality-list li { font-size: 14px; color: var(--cream); padding: 8px 0 8px 20px; position: relative; }
+.quality-list li::before { content: ''; position: absolute; left: 0; top: 15px; width: 8px; height: 1px; background: var(--gold); }
+.quality-grid-23 { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 12px; }
+.quality-slot { aspect-ratio: 2/3; background: var(--carbon); border: 1px dashed rgba(201,169,110,0.2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; border-radius: 2px; transition: border-color 0.3s; }
+.quality-slot:hover { border-color: rgba(201,169,110,0.5); }
+.quality-slot span { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ash); }
+.slot-icon { width: 36px; height: 36px; border: 1px solid rgba(201,169,110,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 16px; }
+
+/* ─── MESH DRIFT SHADER BACKGROUND (Resultados reales) ─── */
+#galeria { position: relative; overflow: hidden; }
+#galeria .shader-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; }
+#galeria > .container { position: relative; z-index: 1; }
+#galeria .eyebrow,
+#galeria .section-head h2,
+#galeria .section-head p,
+#galeria .ref-section h3,
+#galeria .demo-note,
+#galeria h3 { color: #FFFFFF; }
+#galeria .glow-card { --hue: 199; }
+
+/* ─── REFERENCE NODE NETWORK ─── */
+.ref-section { margin-bottom: 80px; }
+.ref-section h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; margin-bottom: 32px; color: var(--cream); }
+.node-network { display: grid; grid-template-columns: 220px 1fr 280px 1fr 220px; align-items: center; gap: 0; min-height: 540px; }
+@media (max-width: 900px) { .node-network { grid-template-columns: 1fr; gap: 16px; min-height: auto; } .node-connector { display: none !important; } }
+.node-col { display: flex; flex-direction: column; gap: 12px; }
+.node-img { aspect-ratio: 2/3; background: var(--carbon); border: 1px dashed rgba(201,169,110,0.2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; border-radius: 2px; transition: border-color 0.3s; }
+.node-img:hover { border-color: rgba(201,169,110,0.5); }
+.node-img span { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--ash); }
+.node-center { display: flex; align-items: center; justify-content: center; }
+.node-center-img { width: 280px; aspect-ratio: 2/3; background: var(--carbon); border: 2px solid rgba(201,169,110,0.35); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; border-radius: 2px; }
+.node-center-img span { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.node-connector { display: flex; align-items: center; justify-content: center; position: relative; }
+.node-connector::before { content: ''; position: absolute; width: 100%; height: 2px; background: linear-gradient(90deg, rgba(56,189,248,0.15), rgba(56,189,248,0.95), rgba(56,189,248,0.15)); box-shadow: 0 0 10px rgba(56,189,248,0.7); }
+.node-connector .dot-start, .node-connector .dot-end { position: absolute; width: 7px; height: 7px; background: #38bdf8; border-radius: 50%; box-shadow: 0 0 12px 3px rgba(56,189,248,0.85); }
+.node-connector .dot-start { left: 0; }
+.node-connector .dot-end { right: 0; }
+.node-connector .line-mid-top, .node-connector .line-mid-bot { position: absolute; width: 2px; background: rgba(56,189,248,0.6); box-shadow: 0 0 8px rgba(56,189,248,0.6); }
+.node-connector .line-mid-top { height: 40%; top: 0; left: 50%; }
+.node-connector .line-mid-bot { height: 40%; bottom: 0; left: 50%; }
+
+/* ─── DEMO GALLERY ─── */
+.demo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 40px; }
+.demo-slot { aspect-ratio: 3/4; background: var(--carbon); border: 1px dashed rgba(201,169,110,0.2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; border-radius: 2px; transition: border-color 0.3s; }
+.demo-slot:hover { border-color: rgba(201,169,110,0.5); }
+.demo-slot span { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ash); }
+.demo-note { text-align: center; margin-top: 24px; font-size: 13px; color: var(--ash); font-style: italic; }
+
+/* ─── PHASES ─── */
+.phase-card { background: var(--offblack); border-left: 3px solid var(--gold); padding: 40px; margin-bottom: 24px; }
+section.alt .phase-card { background: var(--carbon); }
+.phase-tag { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.phase-card h3 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 500; margin-bottom: 14px; }
+.phase-card p { font-size: 15px; color: var(--ash); line-height: 1.7; margin-bottom: 16px; }
+.deliverables { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.deliverable-tag { font-size: 12px; font-weight: 500; padding: 6px 14px; background: rgba(201,169,110,0.08); border: 1px solid rgba(201,169,110,0.15); color: var(--cream); border-radius: 1px; }
+.phase-price { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--warm-white); margin-top: 20px; }
+.phase-price-note { font-size: 13px; color: var(--ash); margin-top: 4px; }
+.alt-option { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(201,169,110,0.1); }
+.alt-option-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--ash); margin-bottom: 10px; }
+.alt-option p { font-size: 14px; color: var(--ash); line-height: 1.6; margin-bottom: 8px; }
+.alt-price { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: var(--cream); }
+.alt-price-note { font-size: 12px; color: var(--ash); margin-top: 2px; }
+
+/* ─── WIREFRAME HOLDERS ─── */
+.wireframe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 24px; }
+.wireframe-slot { aspect-ratio: 16/10; background: var(--carbon); border: 1px dashed rgba(201,169,110,0.2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; border-radius: 2px; }
+.wireframe-slot span { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ash); }
+
+/* ─── TABLES ─── */
+.compare-table { width: 100%; border-collapse: collapse; margin-top: 32px; }
+.compare-table th { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-align: left; padding: 14px 20px; border-bottom: 1px solid rgba(201,169,110,0.2); }
+.compare-table td { font-size: 14px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--cream); }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table .highlight { color: var(--gold); font-weight: 600; }
+.compare-table .dim { color: var(--ash); }
+
+/* ─── TOTAL ─── */
+.total-block { background: linear-gradient(135deg, rgba(201,169,110,0.08), rgba(201,169,110,0.02)); border: 1px solid rgba(201,169,110,0.2); padding: 48px; text-align: center; margin-top: 48px; border-radius: 2px; }
+.total-label { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.total-price { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 52px); font-weight: 600; color: var(--warm-white); }
+.total-sub { font-size: 14px; color: var(--ash); margin-top: 8px; }
+.total-breakdown { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(201,169,110,0.12); }
+.breakdown-item { text-align: center; }
+.breakdown-item .b-val { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--cream); }
+.breakdown-item .b-label { font-size: 11px; color: var(--ash); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+/* ─── CTA ─── */
+.cta-section { padding: 120px 0; text-align: center; background: radial-gradient(ellipse at 50% 100%, rgba(201,169,110,0.06) 0%, transparent 60%); }
+.cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4.5vw, 44px); font-weight: 500; margin-bottom: 18px; }
+.cta-section p { font-size: 16px; color: var(--ash); max-width: 500px; margin: 0 auto 36px; }
+.cta-btn { display: inline-block; padding: 16px 48px; background: var(--gold); color: var(--black); font-family: 'Inter'; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: background 0.3s; }
+.cta-btn:hover { background: var(--gold-light); }
+footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+footer p { font-size: 12px; color: var(--ash); letter-spacing: 1px; }
+
+@media (max-width: 600px) {
+  .hero-stats { gap: 32px; }
+  .phase-card { padding: 28px; }
+  .total-block { padding: 32px 20px; }
+  .wireframe-grid { grid-template-columns: 1fr; }
+  .quality-grid-23 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── HERO LOGO (image) ─── */
+.hero-logo-img { height: clamp(88px, 13vw, 175px); width: auto; margin-bottom: 40px; display: inline-block; filter: drop-shadow(0 0 32px rgba(201,169,110,0.3)); }
+
+/* ─── GLOW / SPOTLIGHT HOLDER EFFECT ─── */
+/* Faithful to the reference GlowCard component: a tracked spotlight fill, a crisp
+   border-ring highlight, and a soft outer halo that only lights up when the pointer
+   is actually near that card. The photo is a normal flow child inset by padding, so
+   by construction it always sits ON TOP of and INSIDE these layers — the glow can
+   never bleed over the image itself, mask-composite quirks or not. */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  padding: 3px;
+  --hue: calc(40 + (var(--xp, 0) * 70));
+  background-color: var(--carbon);
+  background-image: radial-gradient(
+    280px 280px at calc(var(--x, -9999) * 1px) calc(var(--y, -9999) * 1px),
+    hsl(var(--hue) 90% 65% / 0.9),
+    hsl(var(--hue) 70% 45% / 0.35) 45%,
+    transparent 72%
+  );
+  background-attachment: fixed;
+  border: 1px solid rgba(201,169,110,0.18);
+  box-shadow: 0 0 26px 3px hsl(var(--hue) 85% 60% / calc(0.45 * var(--near, 0)));
+  transition: box-shadow 0.15s ease;
+}
+.glow-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    140px 140px at calc(var(--x, -9999) * 1px) calc(var(--y, -9999) * 1px),
+    hsl(0 100% 100% / 0.9), transparent 70%
+  ),
+  radial-gradient(
+    220px 220px at calc(var(--x, -9999) * 1px) calc(var(--y, -9999) * 1px),
+    hsl(var(--hue) 95% 70% / 1), transparent 75%
+  );
+  background-attachment: fixed;
+  filter: brightness(1.4);
+}
+.glow-card img { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 1px; cursor: zoom-in; transition: transform 0.35s ease; }
+.glow-card img:hover { transform: scale(1.035); }
+
+/* ─── LIGHTBOX ─── */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(6,6,6,0.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 56px;
+  cursor: zoom-out;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.lightbox-overlay.active { display: flex; opacity: 1; }
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  cursor: default;
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,169,110,0.3);
+  background: rgba(255,255,255,0.04);
+  color: var(--warm-white);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background 0.3s;
+}
+.lightbox-close:hover { border-color: var(--gold); background: rgba(201,169,110,0.12); }
+@media (max-width: 600px) {
+  .lightbox-overlay { padding: 24px; }
+  .lightbox-close { top: 12px; right: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <canvas class="hero-waves" id="hero-waves"></canvas>
+  <div class="hero-inner">
+    <img src="assets/logo.webp" alt="Centrix Core" class="hero-logo-img">
+    <h1>Ecosistema integral<br>de IA generativa y ecommerce<br>para <em>Classior Legmoda</em></h1>
+    <p class="hero-sub">Un sistema completo que conecta producción visual con IA, catálogo digital y ecommerce — para que tu marca pase de la prenda confeccionada a la venta cerrada, sin los cuellos de botella de la producción convencional.</p>
+    <div class="hero-stats">
+      <div class="stat-item"><span class="stat-number">255</span><span class="stat-label">Referencias</span></div>
+      <div class="stat-item"><span class="stat-number">1.240</span><span class="stat-label">Fotografías</span></div>
+      <div class="stat-item"><span class="stat-number">55</span><span class="stat-label">Videos</span></div>
+      <div class="stat-item"><span class="stat-number">10</span><span class="stat-label">Modelos IA</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="alt">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">El problema</p>
+      <h2>La producción tradicional no fue diseñada para esto</h2>
+      <p>Producir un catálogo de 255 referencias con métodos convencionales implica semanas de coordinación, costos exponenciales y resultados que dependen de variables incontrolables.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card glow-card"><h3>Costos impredecibles</h3><p>Estudio, fotógrafo, modelos, maquillaje, styling, retocador — cada referencia adicional multiplica el presupuesto. Para 255 referencias, los números se vuelven inviables.</p></div>
+      <div class="problem-card glow-card"><h3>Tiempos extensos</h3><p>Coordinar modelos, disponibilidad de estudio y sesiones de retoque para cientos de productos puede tomar meses — meses que tu catálogo ya debería estar vendiendo.</p></div>
+      <div class="problem-card glow-card"><h3>Inconsistencia visual</h3><p>Diferentes sesiones, diferentes luces, diferentes modelos. Mantener coherencia de marca a lo largo de 255 referencias es el reto más grande — y el que más se nota.</p></div>
+      <div class="problem-card glow-card"><h3>Sin flexibilidad</h3><p>¿Necesitas actualizar el catálogo en dos meses? Vuelta al estudio. ¿Necesitas otra pose o encuadre? Otra sesión. El modelo tradicional no permite iteración rápida.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUALITY ═══ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Nuestra diferencia</p>
+      <h2>Calidad editorial. Consistencia absoluta.</h2>
+    </div>
+    <div class="quality-block">
+      <div class="quality-text">
+        <h3>No es "una foto generada por IA"</h3>
+        <p>Es un sistema de producción visual diseñado a medida para tu marca. Cada modelo IA se construye con identidad propia — rasgos, complexión, actitud — y se mantiene perfectamente consistente a lo largo de todas las referencias que cubre.</p>
+        <p>La textura de la tela se respeta. El caimiento de la prenda se reproduce con fidelidad. La iluminación direccional genera volumen real sobre la piel y el tejido. No son renders planos ni composiciones artificiales — son imágenes con la profundidad y el detalle de una producción editorial.</p>
+        <ul class="quality-list">
+          <li>Modelos IA con identidad persistente y consistente en todo el catálogo</li>
+          <li>Fidelidad textil: la tela se ve como tela, no como una textura pintada</li>
+          <li>Iluminación de estudio profesional con volumen y dirección real</li>
+          <li>Resolución final lista para impresión, pantalla y redes sociales</li>
+          <li>Ficha técnica de identidad de cada prenda como parte del set</li>
+        </ul>
+      </div>
+      <div class="quality-grid-23">
+        <div class="quality-slot glow-card"><img src="assets/muestra-1.webp" alt="Muestra 1"></div>
+        <div class="quality-slot glow-card"><img src="assets/muestra-2.webp" alt="Muestra 2"></div>
+        <div class="quality-slot glow-card"><img src="assets/muestra-3.webp" alt="Muestra 3"></div>
+        <div class="quality-slot glow-card"><img src="assets/muestra-4.webp" alt="Muestra 4"></div>
+        <div class="quality-slot glow-card"><img src="assets/muestra-5.webp" alt="Muestra 5"></div>
+        <div class="quality-slot glow-card"><img src="assets/muestra-6.webp" alt="Muestra 6"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REFERENCE NODES + DEMO GALLERY ═══ -->
+<section class="alt" id="galeria">
+  <canvas class="shader-bg" id="mesh-drift"></canvas>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Resultados reales</p>
+      <h2>Generaciones realizadas con tus prendas</h2>
+      <p>Estas imágenes fueron producidas con prendas reales de tu catálogo. Cada foto fue generada específicamente para tu marca con nuestro sistema de producción.</p>
+    </div>
+
+    <!-- REFERENCIA 1 -->
+    <div class="ref-section">
+      <h3>Referencia 1</h3>
+      <div class="node-network">
+        <div class="node-col">
+          <div class="node-img glow-card"><img src="assets/ref1-input-1.webp" alt="Referencia 1 — Input 1"></div>
+          <div class="node-img glow-card"><img src="assets/ref1-input-2.webp" alt="Referencia 1 — Input 2"></div>
+          <div class="node-img glow-card"><img src="assets/ref1-input-3.webp" alt="Referencia 1 — Input 3"></div>
+        </div>
+        <div class="node-connector">
+          <div class="dot-start"></div>
+          <div class="dot-end"></div>
+          <div class="line-mid-top"></div>
+          <div class="line-mid-bot"></div>
+        </div>
+        <div class="node-center">
+          <div class="node-center-img glow-card"><img src="assets/ref1-resultado.webp" alt="Referencia 1 — Resultado"></div>
+        </div>
+        <div class="node-connector">
+          <div class="dot-start"></div>
+          <div class="dot-end"></div>
+          <div class="line-mid-top"></div>
+          <div class="line-mid-bot"></div>
+        </div>
+        <div class="node-col">
+          <div class="node-img glow-card"><img src="assets/ref1-variante-1.webp" alt="Referencia 1 — Variante 1"></div>
+          <div class="node-img glow-card"><img src="assets/ref1-variante-2.webp" alt="Referencia 1 — Variante 2"></div>
+          <div class="node-img glow-card"><img src="assets/ref1-variante-3.webp" alt="Referencia 1 — Variante 3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFERENCIA 2 -->
+    <div class="ref-section">
+      <h3>Referencia 2</h3>
+      <div class="node-network">
+        <div class="node-col">
+          <div class="node-img glow-card"><img src="assets/ref2-input-1.webp" alt="Referencia 2 — Input 1"></div>
+          <div class="node-img glow-card"><img src="assets/ref2-input-2.webp" alt="Referencia 2 — Input 2"></div>
+          <div class="node-img glow-card"><img src="assets/ref2-input-3.webp" alt="Referencia 2 — Input 3"></div>
+        </div>
+        <div class="node-connector">
+          <div class="dot-start"></div>
+          <div class="dot-end"></div>
+          <div class="line-mid-top"></div>
+          <div class="line-mid-bot"></div>
+        </div>
+        <div class="node-center">
+          <div class="node-center-img glow-card"><img src="assets/ref2-resultado.webp" alt="Referencia 2 — Resultado"></div>
+        </div>
+        <div class="node-connector">
+          <div class="dot-start"></div>
+          <div class="dot-end"></div>
+          <div class="line-mid-top"></div>
+          <div class="line-mid-bot"></div>
+        </div>
+        <div class="node-col">
+          <div class="node-img glow-card"><img src="assets/ref2-variante-1.webp" alt="Referencia 2 — Variante 1"></div>
+          <div class="node-img glow-card"><img src="assets/ref2-variante-2.webp" alt="Referencia 2 — Variante 2"></div>
+          <div class="node-img glow-card"><img src="assets/ref2-variante-3.webp" alt="Referencia 2 — Variante 3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEMO GALLERY -->
+    <div style="margin-top: 40px;">
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; margin-bottom: 24px; color: #FFFFFF;">Galería de resultados</h3>
+      <div class="demo-gallery">
+        <div class="demo-slot glow-card"><img src="assets/demo-1.webp" alt="Demo 1"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-2.webp" alt="Demo 2"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-3.webp" alt="Demo 3"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-4.webp" alt="Demo 4"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-5.webp" alt="Demo 5"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-6.webp" alt="Demo 6"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-7.webp" alt="Demo 7"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-8.webp" alt="Demo 8"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-9.webp" alt="Demo 9"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-10.webp" alt="Demo 10"></div>
+        <div class="demo-slot glow-card"><img src="assets/demo-11.webp" alt="Demo 11"></div>
+      </div>
+      <p class="demo-note">Imágenes generadas por Centrix Core con el sistema de producción que se aplicará a las 255 referencias del proyecto.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">La propuesta</p>
+      <h2>Cuatro servicios integrados, un ecosistema completo</h2>
+      <p>Desde la primera foto de campaña hasta la tienda funcionando con checkout — todo conectado, todo resuelto por un solo equipo.</p>
+    </div>
+
+    <!-- FASE A -->
+    <div class="phase-card">
+      <div class="phase-tag">Fase A — Campaña completa</div>
+      <h3>55 referencias prioritarias con fotografía, fichas y video</h3>
+      <p>El set completo de campaña para tus referencias más importantes: identidad de modelo IA, ficha técnica de producto, 8 fotografías finales de campaña en alta resolución y video de campaña con 4 clips por referencia. Este material se integrará a tu sitio web.</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">5 modelos IA</span>
+        <span class="deliverable-tag">55 fichas de identidad</span>
+        <span class="deliverable-tag">440 fotografías</span>
+        <span class="deliverable-tag">55 videos (220 clips)</span>
+      </div>
+      <div class="phase-price">$4.075.391 COP</div>
+      <p class="phase-price-note">$74.098 COP por referencia · Entrega: 18 días hábiles</p>
+
+      <div class="alt-option">
+        <p class="alt-option-label">Opción alternativa — Sin video, 5 fotos por referencia</p>
+        <p>Si tu prioridad es solo fotografía de campaña sin video: se entregan 5 fotos finales por referencia (1 ficha de identidad de la prenda + 4 fotos de campaña en alta resolución). La ficha de fit se genera internamente pero no se entrega — se usa para garantizar la fidelidad de la prenda sobre el modelo.</p>
+        <div class="deliverables">
+          <span class="deliverable-tag">5 modelos IA</span>
+          <span class="deliverable-tag">55 fichas de identidad</span>
+          <span class="deliverable-tag">275 fotografías (5 x 55)</span>
+          <span class="deliverable-tag">Sin video</span>
+        </div>
+        <div class="alt-price">$3.563.753 COP</div>
+        <p class="alt-price-note">$64.796 COP por referencia · Ahorro: ~$512.000 COP vs. la opción con video</p>
+      </div>
+    </div>
+
+    <!-- FASE B -->
+    <div class="phase-card">
+      <div class="phase-tag">Fase B — Alto volumen para catálogo digital</div>
+      <h3>200 referencias con fotografía y ficha de producto</h3>
+      <p>Fotografía de campaña optimizada para alto volumen: 4 fotos finales en alta resolución por referencia, más ficha de identidad de prenda. Pensado específicamente como el insumo visual de tu catálogo digital.</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">5 modelos IA nuevos</span>
+        <span class="deliverable-tag">200 fichas de identidad</span>
+        <span class="deliverable-tag">800 fotografías en alta resolución</span>
+      </div>
+      <div class="phase-price">$7.221.003 COP</div>
+      <p class="phase-price-note">$36.105 COP por referencia · Entrega: 18 días hábiles</p>
+
+      <div class="alt-option">
+        <p class="alt-option-label">Opción alternativa — 4 fotos: 1 ficha + 3 de campaña</p>
+        <p>Se entregan 4 fotos por referencia: 1 ficha de identidad de la prenda + 3 fotografías de campaña en alta resolución. Ideal si buscas un catálogo digital más compacto y eficiente en costos.</p>
+        <div class="deliverables">
+          <span class="deliverable-tag">5 modelos IA nuevos</span>
+          <span class="deliverable-tag">200 fichas de identidad</span>
+          <span class="deliverable-tag">600 fotografías (3 campaña x 200)</span>
+        </div>
+        <div class="alt-price">$6.693.618 COP</div>
+        <p class="alt-price-note">$33.468 COP por referencia · Ahorro: ~$527.000 COP vs. opción de 4 fotos completas</p>
+      </div>
+    </div>
+
+    <!-- LANDING -->
+    <div class="phase-card">
+      <div class="phase-tag">Catálogo digital</div>
+      <h3>Landing page informativa para compartir por WhatsApp</h3>
+      <p>Un catálogo visual accesible desde un link: tu cliente abre WhatsApp, recibe el enlace, y navega las 200 referencias organizadas con sus fotos — sin precios, sin checkout, puramente informativa y gráfica. Optimizada para carga rápida en datos móviles.</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">Galería visual responsive</span>
+        <span class="deliverable-tag">200 referencias organizadas</span>
+        <span class="deliverable-tag">Optimizada para móvil</span>
+        <span class="deliverable-tag">800 fotos optimizadas</span>
+      </div>
+      <div class="phase-price">$1.308.000 COP</div>
+      <p class="phase-price-note">Equivalente a $400 USD · Entrega: 1 a 2 semanas una vez se tengan las fotos</p>
+
+      <div class="wireframe-grid" style="margin-top: 24px;">
+        <div class="wireframe-slot glow-card"><img src="assets/landing-1.webp" alt="Wireframe propuesta — Vista 1"></div>
+        <div class="wireframe-slot glow-card"><img src="assets/landing-2.webp" alt="Wireframe propuesta — Vista 2"></div>
+      </div>
+    </div>
+
+    <!-- SHOPIFY -->
+    <div class="phase-card">
+      <div class="phase-tag">Tienda en línea — Classior</div>
+      <h3>Tu tienda Shopify con 55 referencias listas para vender</h3>
+      <p>Tu tienda completa funcionando: 55 productos cargados con toda la fotografía de campaña generada en la Fase A, pasarelas de pago colombianas, configuración de envíos nacionales, integración con Instagram Shopping, SEO, emails automáticos y capacitación para tu equipo.</p>
+      <div class="deliverables">
+        <span class="deliverable-tag">Shopify personalizado</span>
+        <span class="deliverable-tag">55 productos cargados</span>
+        <span class="deliverable-tag">Wompi + PayU</span>
+        <span class="deliverable-tag">Envíos nacionales</span>
+        <span class="deliverable-tag">Instagram Shopping</span>
+        <span class="deliverable-tag">SEO + Analytics</span>
+        <span class="deliverable-tag">Klaviyo (emails)</span>
+        <span class="deliverable-tag">Textos de marca</span>
+        <span class="deliverable-tag">Capacitación</span>
+      </div>
+      <div class="phase-price">$5.000.000 COP</div>
+      <p class="phase-price-note">Entrega: 4–5 semanas tras aprobación · No incluye suscripción mensual de Shopify (plan Basic: $25 USD/mes ≈ $81.000 COP/mes)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLASSIOR DIAGNOSIS ═══ -->
+<section class="alt" id="classior">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Diagnóstico · Classior</p>
+      <h2>Tienes producto, operación y audiencia.<br>Solo falta el canal.</h2>
+      <p>Classior tiene una bodega operando en Itagüí, un catálogo de prendas confeccionadas y una comunidad de más de 3.700 seguidores en Instagram con intención de compra real. Hoy, cada venta depende de que el comprador llegue físicamente a la bodega o escriba por DM.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card glow-card"><h3>Ventas que no existen</h3><p>El 68% de las compras online ocurren fuera del horario comercial. Sin tienda digital, esas ventas simplemente no suceden — ni de noche, ni los domingos, ni los festivos.</p></div>
+      <div class="problem-card glow-card"><h3>Alcance limitado a Medellín</h3><p>Sin canal digital transaccional, la venta queda restringida al área metropolitana. El resto del país no tiene forma de comprarte.</p></div>
+      <div class="problem-card glow-card"><h3>3.700 seguidores sin dónde comprar</h3><p>Tu audiencia en Instagram ya tiene intención de compra. Pero sin catálogo vinculado ni checkout, cada interesado se convierte en un DM que requiere atención manual.</p></div>
+      <div class="problem-card glow-card"><h3>La foto es el probador virtual</h3><p>En ropa online, la fotografía es el único argumento de venta. Una tienda perfectamente construida con fotos mediocres no convierte. Con las Fases A y B, ese problema ya está resuelto.</p></div>
+    </div>
+
+    <div style="margin-top: 64px;">
+      <p class="eyebrow">Experiencia del comprador</p>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 500; margin-bottom: 32px;">De Instagram a la entrega — sin intervención manual</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+        <div class="problem-card glow-card" style="text-align: center; padding: 24px;"><div style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); margin-bottom: 8px;">1</div><h3 style="font-size: 13px;">Descubre</h3><p style="font-size: 13px;">Ve la prenda en Instagram → toca el producto etiquetado → ve precio y descripción.</p></div>
+        <div class="problem-card glow-card" style="text-align: center; padding: 24px;"><div style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); margin-bottom: 8px;">2</div><h3 style="font-size: 13px;">Entra a la tienda</h3><p style="font-size: 13px;">Toca "Ver en tienda" → llega a la página del producto con fotos de campaña, tallas y precio.</p></div>
+        <div class="problem-card glow-card" style="text-align: center; padding: 24px;"><div style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); margin-bottom: 8px;">3</div><h3 style="font-size: 13px;">Decide y paga</h3><p style="font-size: 13px;">Selecciona talla → agrega al carrito → paga con PSE, tarjeta o Nequi.</p></div>
+        <div class="problem-card glow-card" style="text-align: center; padding: 24px;"><div style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); margin-bottom: 8px;">4</div><h3 style="font-size: 13px;">Recibe</h3><p style="font-size: 13px;">El pedido aparece en tu panel → despachas → el cliente recibe email con seguimiento automático.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px;">
+      <p class="eyebrow">Implementación</p>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 500; margin-bottom: 32px;">5 semanas de setup — después, la tienda trabaja sola</h3>
+      <table class="compare-table">
+        <thead><tr><th>Fase</th><th>Semana</th><th>Alcance</th></tr></thead>
+        <tbody>
+          <tr><td class="highlight">Fundamentos</td><td>Sem. 1</td><td>Dominio, apertura de Shopify, instalación y configuración del tema.</td></tr>
+          <tr><td class="highlight">Diseño</td><td>Sem. 1–2</td><td>Personalización visual con identidad de Classior, páginas base, redacción de textos de marca.</td></tr>
+          <tr><td class="highlight">Catálogo</td><td>Sem. 2–3</td><td>Importación de 55 productos con variantes y toda la fotografía de campaña (Fase A).</td></tr>
+          <tr><td class="highlight">Integraciones</td><td>Sem. 3–4</td><td>Pasarelas de pago (Wompi + PayU), envíos nacionales, Instagram Shopping, Klaviyo.</td></tr>
+          <tr><td class="highlight">Lanzamiento</td><td>Sem. 4–5</td><td>SEO + Analytics, prueba de compra end-to-end, go live y capacitación (2–3 horas).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top: 64px;">
+      <p class="eyebrow">Desglose del setup</p>
+      <h3 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 500; margin-bottom: 32px;">Qué incluye cada peso de los $5.000.000</h3>
+      <table class="compare-table">
+        <thead><tr><th style="width: 55%;">Rubro</th><th>Incluye</th><th style="text-align: right;">Valor</th></tr></thead>
+        <tbody>
+          <tr><td>Diseño y desarrollo Shopify</td><td class="dim">Tema personalizado con identidad Classior</td><td style="text-align: right;">$1.900.000</td></tr>
+          <tr><td>Carga de catálogo (55 referencias)</td><td class="dim">Productos, variantes, fotografía de campaña</td><td style="text-align: right;">$950.000</td></tr>
+          <tr><td>Redacción de textos de marca</td><td class="dim">Descripciones, políticas, FAQs</td><td style="text-align: right;">$350.000</td></tr>
+          <tr><td>Pasarelas de pago</td><td class="dim">Wompi + PayU configurados y probados</td><td style="text-align: right;">$350.000</td></tr>
+          <tr><td>Configuración de envíos</td><td class="dim">Zonas desde Itagüí, tarifas y carrier</td><td style="text-align: right;">$250.000</td></tr>
+          <tr><td>Instagram Shopping</td><td class="dim">Meta Commerce Manager + catálogo vinculado</td><td style="text-align: right;">$300.000</td></tr>
+          <tr><td>SEO básico + Analytics</td><td class="dim">Títulos, metas, GA4 y Search Console</td><td style="text-align: right;">$300.000</td></tr>
+          <tr><td>Email automático (Klaviyo)</td><td class="dim">Bienvenida, carrito abandonado, post-compra</td><td style="text-align: right;">$300.000</td></tr>
+          <tr><td>Capacitación</td><td class="dim">Sesión 2–3h + guía de referencia</td><td style="text-align: right;">$300.000</td></tr>
+          <tr><td colspan="2" style="font-weight: 600; color: var(--warm-white);">TOTAL SETUP</td><td style="text-align: right; font-weight: 600; color: var(--gold); font-size: 16px;">$5.000.000</td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 32px; background: rgba(201,169,110,0.04); border: 1px solid rgba(201,169,110,0.1); padding: 24px; border-radius: 2px;">
+        <p style="font-size: 13px; font-weight: 600; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">Costos mensuales de plataforma (los paga Classior directamente)</p>
+        <p style="font-size: 14px; color: var(--ash); line-height: 1.7;">Shopify Basic: $25 USD/mes ≈ $81.000 COP/mes · Google Workspace Business Starter: ~$29.200 COP/mes por usuario · Klaviyo: $0 hasta 250 contactos · Comisiones por venta: ~4,5% por transacción (Wompi/PayU + Shopify).</p>
+        <p style="font-size: 14px; color: var(--cream); margin-top: 8px;">Costo fijo mensual estimado: <strong>~$110.200 COP/mes</strong> — pagado directamente a cada proveedor, no pasa por Centrix Core. Shopify se factura en USD, así que el valor en COP varía con la tasa de cambio.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 64px; text-align: center; max-width: 640px; margin-left: auto; margin-right: auto;">
+      <p style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; line-height: 1.5; color: var(--cream);">La ventaja que otras agencias no pueden ofrecer: cuando tu tienda abra, las 55 referencias ya tendrán fotografía de campaña profesional lista — porque nosotros mismos la producimos.</p>
+      <p style="font-size: 14px; color: var(--ash); margin-top: 16px;">Normalmente, la fotografía es el cuello de botella más caro y lento del lanzamiento de un ecommerce de moda. Con Centrix Core, ese problema se resuelve antes de que la tienda se empiece a construir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VS TRADITIONAL ═══ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Contexto de mercado</p>
+      <h2>Lo que costaría esto con producción tradicional</h2>
+    </div>
+    <table class="compare-table">
+      <thead><tr><th>Concepto</th><th>Producción tradicional</th><th>Centrix Core</th></tr></thead>
+      <tbody>
+        <tr><td>Fotografía de 255 referencias</td><td class="dim">$25.000.000 – $50.000.000 COP</td><td class="highlight">$11.296.394 COP</td></tr>
+        <tr><td>Consistencia entre modelos y sesiones</td><td class="dim">Variable — depende de condiciones</td><td class="highlight">Absoluta — modelos IA persistentes</td></tr>
+        <tr><td>Tiempo de producción (255 refs)</td><td class="dim">6 – 12 semanas</td><td class="highlight">3 – 4 semanas</td></tr>
+        <tr><td>Videos de campaña (55 refs)</td><td class="dim">+$8.000.000 – $15.000.000 COP</td><td class="highlight">Incluido en Fase A</td></tr>
+        <tr><td>Landing page + sitio web</td><td class="dim">Cotización aparte con otra agencia</td><td class="highlight">Incluido · mismo equipo</td></tr>
+        <tr><td>Iteración (nuevas poses, ángulos)</td><td class="dim">Nueva sesión de estudio</td><td class="highlight">Regeneración en minutos</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ TOTAL ═══ -->
+<section class="alt">
+  <div class="container">
+    <div class="total-block">
+      <p class="total-label">Inversión total — 4 servicios integrados</p>
+      <p class="total-price">$17.604.394 COP</p>
+      <p class="total-sub">Fotografía de campaña + videos + catálogo digital + tienda en línea funcionando</p>
+      <div class="total-breakdown">
+        <div class="breakdown-item"><span class="b-val">$4.075.391</span><span class="b-label">Fase A · 55 refs</span></div>
+        <div class="breakdown-item"><span class="b-val">$7.221.003</span><span class="b-label">Fase B · 200 refs</span></div>
+        <div class="breakdown-item"><span class="b-val">$1.308.000</span><span class="b-label">Landing page</span></div>
+        <div class="breakdown-item"><span class="b-val">$5.000.000</span><span class="b-label">Shopify</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section">
+  <div class="container">
+    <p class="eyebrow">¿Listo para empezar?</p>
+    <h2>Tu catálogo completo,<br>listo para vender</h2>
+    <p>255 referencias, 1.240 fotos, 55 videos, catálogo digital y tienda en línea — todo desde un solo equipo, en semanas.</p>
+    <a href="#" class="cta-btn">Agendar una sesión</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Centrix Core · Producción de campaña con Inteligencia Artificial · 2026</p>
+    <p style="margin-top: 8px; font-size: 11px;">Esta propuesta tiene una vigencia de 30 días calendario a partir de su emisión. Precios en COP, no incluye IVA.</p>
+  </div>
+</footer>
+
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+(function () {
+  var canvas = document.getElementById('hero-waves');
+  if (!canvas || !canvas.getContext) return;
+  var heroEl = canvas.parentElement;
+  var ctx = canvas.getContext('2d');
+  var w, h, nt = 0;
+  var speed = 0.0035;
+  var waveWidth = 5;
+  var waveOpacity = 0.6;
+  var colors = ['#22c55e', '#8b5cf6', '#3b82f6', '#a78bfa', '#06b6d4'];
+
+  /* Lightweight dependency-free stand-in for simplex-noise: a few layered
+     sines give the same kind of smooth, non-repeating flow for this purpose. */
+  function flowNoise(x, y) {
+    return (
+      Math.sin(x * 1.0 + y * 1.3) * 0.5 +
+      Math.sin(x * 0.7 - y * 0.9 + 1.7) * 0.3 +
+      Math.sin(x * 1.9 + y * 0.4 + 3.1) * 0.2
+    );
+  }
+
+  function resize() {
+    w = canvas.width = heroEl.clientWidth;
+    h = canvas.height = heroEl.clientHeight;
+  }
+
+  function drawWaves(n) {
+    nt += speed;
+    for (var i = 0; i < n; i++) {
+      ctx.beginPath();
+      ctx.lineWidth = waveWidth;
+      ctx.strokeStyle = colors[i % colors.length];
+      for (var x = 0; x <= w; x += 5) {
+        var y = flowNoise(x / 800, 0.35 * i + nt) * 90;
+        ctx.lineTo(x, y + h * 0.5);
+      }
+      ctx.stroke();
+    }
+  }
+
+  var rafId;
+  function render() {
+    ctx.globalAlpha = waveOpacity;
+    ctx.fillStyle = '#0A0A0A';
+    ctx.fillRect(0, 0, w, h);
+    ctx.globalAlpha = 1;
+    drawWaves(5);
+    rafId = requestAnimationFrame(render);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  render();
+})();
+
+/* ─── MESH DRIFT — WebGL1 shader background for "Resultados reales" ─── */
+(function () {
+  var canvas = document.getElementById('mesh-drift');
+  if (!canvas) return;
+  var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+
+  var VERT_SRC = [
+    'attribute vec2 a_position;',
+    'void main() {',
+    '  gl_Position = vec4(a_position, 0.0, 1.0);',
+    '}'
+  ].join('\n');
+
+  var FRAG_SRC = `
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+
+uniform vec3 u_colors[8];
+uniform vec4 u_scene;      // resolution.xy, time, colour count
+uniform vec4 u_shape;      // scale, intensity, paramA, warp
+uniform vec4 u_surface;    // detail, contrast, brightness, saturation
+uniform vec4 u_finish;     // hue, vignette, blur, grain
+uniform vec4 u_transform;  // seed, rotation, drift, OKLab toggle
+uniform vec4 u_space;      // offset.xy, pointer.xy
+uniform vec4 u_cursor;
+
+#define u_resolution u_scene.xy
+#define u_time u_scene.z
+#define u_colorCount u_scene.w
+#define u_scale u_shape.x
+#define u_intensity u_shape.y
+#define u_paramA u_shape.z
+#define u_warp u_shape.w
+#define u_detail u_surface.x
+#define u_contrast u_surface.y
+#define u_brightness u_surface.z
+#define u_saturation u_surface.w
+#define u_hue u_finish.x
+#define u_vignette u_finish.y
+#define u_blur u_finish.z
+#define u_grain u_finish.w
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+#define u_seed u_transform.x
+#else
+#define u_seed mod(u_transform.x, 31.0)
+#endif
+#define u_rotate u_transform.y
+#define u_drift u_transform.z
+#define u_oklab u_transform.w
+#define u_offset u_space.xy
+#define u_mouse u_space.zw
+#define u_cursorPresence u_cursor.x
+#define u_cursorEffect u_cursor.y
+#define u_cursorStrength u_cursor.z
+#define u_cursorRadius u_cursor.w
+
+float hash21(vec2 p) {
+#ifndef GL_FRAGMENT_PRECISION_HIGH
+  p = mod(p, 31.0);
+#endif
+  p = fract(p * vec2(234.34, 435.345));
+  p += dot(p, p + 34.23);
+  return fract(p.x * p.y);
+}
+
+float grainHash(vec2 p) {
+  vec3 p3 = fract(vec3(p.xyx) * 0.1031);
+  p3 += dot(p3, p3.yzx + 33.33);
+  return fract((p3.x + p3.y) * p3.z);
+}
+
+vec2 hash22(vec2 p) {
+#ifndef GL_FRAGMENT_PRECISION_HIGH
+  p = mod(p, 31.0);
+#endif
+  float n = sin(dot(p, vec2(41.0, 289.0)));
+  return fract(vec2(15731.743, 7892.321) * n);
+}
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash21(i), hash21(i + vec2(1.0, 0.0)), u.x),
+    mix(hash21(i + vec2(0.0, 1.0)), hash21(i + vec2(1.0, 1.0)), u.x),
+    u.y);
+}
+
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 5; i++) {
+    v += a * noise(p);
+    p = p * 2.03 + vec2(17.0, 9.2);
+    a *= 0.5;
+  }
+  return v;
+}
+
+vec3 srgbToLinear(vec3 c) {
+  return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)),
+    step(0.04045, c));
+}
+vec3 linearToSrgb(vec3 c) {
+  return mix(c * 12.92, 1.055 * pow(max(c, vec3(0.0)), vec3(1.0 / 2.4)) - 0.055,
+    step(0.0031308, c));
+}
+vec3 linToOklab(vec3 c) {
+  float l = 0.4122214708 * c.r + 0.5363325363 * c.g + 0.0514459929 * c.b;
+  float m = 0.2119034982 * c.r + 0.6806995451 * c.g + 0.1073969566 * c.b;
+  float s = 0.0883024619 * c.r + 0.2817188376 * c.g + 0.6299787005 * c.b;
+  l = pow(max(l, 0.0), 1.0 / 3.0);
+  m = pow(max(m, 0.0), 1.0 / 3.0);
+  s = pow(max(s, 0.0), 1.0 / 3.0);
+  return vec3(
+    0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s,
+    1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s,
+    0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s);
+}
+vec3 oklabToLin(vec3 c) {
+  float l = c.x + 0.3963377774 * c.y + 0.2158037573 * c.z;
+  float m = c.x - 0.1055613458 * c.y - 0.0638541728 * c.z;
+  float s = c.x - 0.0894841775 * c.y - 1.2914855480 * c.z;
+  l = l * l * l; m = m * m * m; s = s * s * s;
+  return vec3(
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s);
+}
+vec3 mixColour(vec3 a, vec3 b, float t) {
+  if (u_oklab > 0.5) {
+    vec3 la = linToOklab(srgbToLinear(a));
+    vec3 lb = linToOklab(srgbToLinear(b));
+    return clamp(linearToSrgb(oklabToLin(mix(la, lb, t))), 0.0, 1.0);
+  }
+  return mix(a, b, t);
+}
+
+vec3 palette(float x) {
+  float n = max(u_colorCount - 1.0, 1.0);
+  float f = clamp(x, 0.0, 1.0) * n;
+  vec3 col = u_colors[0];
+  for (int i = 0; i < 7; i++) {
+    if (float(i) < n)
+      col = mixColour(col, u_colors[i + 1],
+        smoothstep(0.0, 1.0, clamp(f - float(i), 0.0, 1.0)));
+  }
+  return col;
+}
+
+vec3 hueRotate(vec3 col, float a) {
+  const mat3 toYIQ = mat3(0.299, 0.596, 0.211,
+                          0.587, -0.274, -0.523,
+                          0.114, -0.322, 0.312);
+  const mat3 toRGB = mat3(1.0, 1.0, 1.0,
+                          0.956, -0.272, -1.106,
+                          0.621, -0.647, 1.703);
+  vec3 yiq = toYIQ * col;
+  float ca = cos(a), sa = sin(a);
+  yiq = vec3(yiq.x, yiq.y * ca - yiq.z * sa, yiq.y * sa + yiq.z * ca);
+  return toRGB * yiq;
+}
+
+vec3 shade(vec2 uv, vec2 p, float t) {
+  vec3 acc = u_colors[0] * 0.15;
+  float total = 0.15;
+  for (int i = 0; i < 8; i++) {
+    if (float(i) >= u_colorCount) break;
+    float fi = float(i);
+    vec2 c = vec2(
+      sin(t * (0.21 + fi * 0.071) + fi * 2.4 + u_seed),
+      cos(t * (0.17 + fi * 0.093) + fi * 1.7)) * (0.45 + u_intensity * 0.35);
+    float w = exp(-dot(p - c, p - c) * 6.0);
+    acc += u_colors[i] * w;
+    total += w;
+  }
+  return acc / total;
+}
+
+void main() {
+  vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+  vec2 screenUv = uv;
+  vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy)
+    / min(u_resolution.x, u_resolution.y);
+  float cursorMask = 0.0;
+
+  if (u_cursorPresence > 0.001) {
+    vec2 cursor = (0.5 * u_mouse * u_resolution.xy)
+      / min(u_resolution.x, u_resolution.y);
+    vec2 cursorDelta = p - cursor;
+    if (u_cursorEffect < 0.5) {
+      p += cursor * u_cursorPresence * u_cursorStrength * 0.55;
+    } else {
+      float cursorDistance = length(cursorDelta);
+      vec2 cursorDirection = cursorDelta / max(cursorDistance, 0.0001);
+      cursorMask = u_cursorPresence
+        * (1.0 - smoothstep(0.0, u_cursorRadius, cursorDistance));
+      if (u_cursorEffect < 1.5) {
+        p -= cursorDirection * cursorMask * u_cursorStrength * 0.24;
+      } else if (u_cursorEffect < 2.5) {
+        float cursorAngle = cursorMask * u_cursorStrength * 2.2;
+        float cc = cos(cursorAngle), cs = sin(cursorAngle);
+        p = cursor + mat2(cc, -cs, cs, cc) * cursorDelta;
+      } else if (u_cursorEffect < 3.5) {
+        float ripple = sin(
+          cursorDistance / max(u_cursorRadius, 0.001) * 18.0 - u_time * 5.0);
+        p -= cursorDirection * ripple * cursorMask * u_cursorStrength * 0.07;
+      }
+    }
+  }
+
+  uv = p * min(u_resolution.x, u_resolution.y) / u_resolution.xy + 0.5;
+  p *= u_scale;
+  if (abs(u_rotate) > 0.0001) {
+    float cr = cos(u_rotate), sr = sin(u_rotate);
+    p = mat2(cr, -sr, sr, cr) * p;
+  }
+  p += u_offset;
+  if (u_drift > 0.0001)
+    p += u_drift * vec2(sin(u_time * 0.31), cos(u_time * 0.23));
+  if (u_warp > 0.0) {
+    p += u_warp * (vec2(
+      fbm(p * u_detail + u_seed),
+      fbm(p * u_detail + vec2(5.2, 1.3))) - 0.5);
+  }
+  vec3 col;
+  if (u_blur > 0.0) {
+    float e = u_blur;
+    float pe = e * u_scale;
+    vec2 uvE = vec2(e) * min(u_resolution.x, u_resolution.y) / u_resolution.xy;
+    col  = shade(uv, p, u_time) * 0.36;
+    col += shade(uv + vec2(uvE.x, 0.0), p + vec2(pe, 0.0), u_time) * 0.16;
+    col += shade(uv - vec2(uvE.x, 0.0), p - vec2(pe, 0.0), u_time) * 0.16;
+    col += shade(uv + vec2(0.0, uvE.y), p + vec2(0.0, pe), u_time) * 0.16;
+    col += shade(uv - vec2(0.0, uvE.y), p - vec2(0.0, pe), u_time) * 0.16;
+  } else {
+    col = shade(uv, p, u_time);
+  }
+  if (abs(u_contrast - 1.0) > 0.0001)
+    col = (col - 0.5) * u_contrast + 0.5;
+  if (abs(u_saturation - 1.0) > 0.0001) {
+    float luma = dot(col, vec3(0.299, 0.587, 0.114));
+    col = mix(vec3(luma), col, u_saturation);
+  }
+  if (abs(u_hue) > 0.0001)
+    col = hueRotate(col, u_hue);
+  if (abs(u_brightness) > 0.0001)
+    col += u_brightness;
+  if (u_vignette > 0.0001) {
+    float vd = length(screenUv - 0.5) * 1.41421356;
+    col *= 1.0 - u_vignette * smoothstep(0.35, 1.0, vd);
+  }
+  if (u_cursorPresence > 0.001 && u_cursorEffect > 3.5)
+    col += (vec3(0.18) + col * 0.12) * cursorMask * u_cursorStrength;
+  if (u_grain > 0.0001)
+    col += (grainHash(
+      gl_FragCoord.xy + vec2(u_seed * 17.0, u_seed * 31.0)) - 0.5) * u_grain;
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}
+`;
+
+  function compile(type, src) {
+    var sh = gl.createShader(type);
+    gl.shaderSource(sh, src);
+    gl.compileShader(sh);
+    if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) {
+      console.error(gl.getShaderInfoLog(sh));
+      gl.deleteShader(sh);
+      return null;
+    }
+    return sh;
+  }
+
+  var vs = compile(gl.VERTEX_SHADER, VERT_SRC);
+  var fs = compile(gl.FRAGMENT_SHADER, FRAG_SRC);
+  if (!vs || !fs) return;
+
+  var program = gl.createProgram();
+  gl.attachShader(program, vs);
+  gl.attachShader(program, fs);
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(program));
+    return;
+  }
+  gl.useProgram(program);
+
+  var posBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1, -1,
+     3, -1,
+    -1,  3
+  ]), gl.STATIC_DRAW);
+  var posLoc = gl.getAttribLocation(program, 'a_position');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  var uColors = gl.getUniformLocation(program, 'u_colors');
+  var uScene = gl.getUniformLocation(program, 'u_scene');
+  var uShape = gl.getUniformLocation(program, 'u_shape');
+  var uSurface = gl.getUniformLocation(program, 'u_surface');
+  var uFinish = gl.getUniformLocation(program, 'u_finish');
+  var uTransform = gl.getUniformLocation(program, 'u_transform');
+  var uSpace = gl.getUniformLocation(program, 'u_space');
+  var uCursor = gl.getUniformLocation(program, 'u_cursor');
+
+  // Mesh drift — low to high: #03120E, #0E7C5A, #7CE577, #F4FFC7 (4 colours, rest unused)
+  var colorFloats = new Float32Array([
+    0.012, 0.071, 0.055,
+    0.055, 0.486, 0.353,
+    0.486, 0.898, 0.467,
+    0.957, 1.000, 0.780,
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0,
+    0, 0, 0
+  ]);
+  gl.uniform3fv(uColors, colorFloats);
+  gl.uniform4f(uShape, 1.16, 0.34, 0.50, 0.00);
+  gl.uniform4f(uSurface, 2.40, 1.16, 0.00, 1.00);
+  gl.uniform4f(uFinish, 0.00, 0.00, 0.000, 0.09);
+  gl.uniform4f(uTransform, 1453.0, 0.00, 0.00, 0.0);
+  gl.uniform4f(uSpace, 0.00, 0.00, 0.00, 0.00);
+  gl.uniform4f(uCursor, 0.0, 2.0, 0.65, 0.46); // presence 0 = cursor off
+
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  function resize() {
+    var w = Math.max(1, Math.round(canvas.clientWidth * dpr));
+    var h = Math.max(1, Math.round(canvas.clientHeight * dpr));
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+      gl.viewport(0, 0, w, h);
+    }
+  }
+
+  var startTime = performance.now();
+  var rafId = null;
+  function frame() {
+    resize();
+    var seconds = (performance.now() - startTime) / 1000;
+    gl.uniform4f(uScene, canvas.width, canvas.height, seconds * 0.73, 4.0);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    rafId = requestAnimationFrame(frame);
+  }
+  function start() {
+    if (rafId === null) {
+      startTime = performance.now() - (pausedAt || 0);
+      rafId = requestAnimationFrame(frame);
+    }
+  }
+  var pausedAt = 0;
+  function stop() {
+    if (rafId !== null) {
+      pausedAt = performance.now() - startTime;
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
+  window.addEventListener('resize', resize);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else start();
+  });
+
+  resize();
+  start();
+})();
+
+(function () {
+  var cards = document.querySelectorAll('.glow-card');
+  var pending = false;
+  var lastX = -9999, lastY = -9999;
+  var NEAR_RADIUS = 320; // px — how far from a card's edge the outer halo starts fading in
+
+  function apply() {
+    pending = false;
+    var xp = (lastX / window.innerWidth).toFixed(4);
+    var yp = (lastY / window.innerHeight).toFixed(4);
+    for (var i = 0; i < cards.length; i++) {
+      var card = cards[i];
+      card.style.setProperty('--x', lastX.toFixed(2));
+      card.style.setProperty('--xp', xp);
+      card.style.setProperty('--y', lastY.toFixed(2));
+      card.style.setProperty('--yp', yp);
+
+      var r = card.getBoundingClientRect();
+      var dx = Math.max(r.left - lastX, 0, lastX - r.right);
+      var dy = Math.max(r.top - lastY, 0, lastY - r.bottom);
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      var near = Math.max(0, 1 - dist / NEAR_RADIUS);
+      card.style.setProperty('--near', near.toFixed(3));
+    }
+  }
+
+  function sync(x, y) {
+    lastX = x;
+    lastY = y;
+    if (!pending) {
+      pending = true;
+      requestAnimationFrame(apply);
+    }
+  }
+  document.addEventListener('pointermove', function (e) { sync(e.clientX, e.clientY); });
+})();
+
+(function () {
+  var overlay = document.getElementById('lightbox');
+  var overlayImg = document.getElementById('lightbox-img');
+  var closeBtn = document.getElementById('lightbox-close');
+
+  function openLightbox(src, alt) {
+    overlayImg.src = src;
+    overlayImg.alt = alt || '';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    overlay.classList.remove('active');
+    overlayImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.glow-card img').forEach(function (img) {
+    img.addEventListener('click', function () { openLightbox(img.src, img.alt); });
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeLightbox();
+  });
+  closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+})();
+</script>
+</body>
+</html>
